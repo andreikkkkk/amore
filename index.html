@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dragostea începe cu noi</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', cursive;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff);
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      color: #ff4d88;
+      font-size: 20px;
+      animation: floatUp 8s infinite ease-in;
+      opacity: 0.8;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(1); opacity: 0.5; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+    .message-container {
+      position: relative;
+      top: 20vh;
+      margin: auto;
+      width: 80%;
+      text-align: center;
+      background: #fff6f9;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ffb3c6;
+      animation: fadeIn 1.5s ease;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #d6336c;
+      text-shadow: 1px 1px #fff;
+    }
+    p {
+      font-size: 1.3rem;
+      color: #5c0a2b;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 25px;
+      background-color: #ff80ab;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ffb3c6;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts"></div>
+
+  <div class="message-container">
+    <h1>Dragostea începe cu noi</h1>
+    <p id="message">Țin atât de mult la tine încât fiecare zi fără tine pare mai lungă ca o viață.</p>
+    <button onclick="nextMessage()">Următorul mesaj</button>
+  </div>
+
+  <script>
+    const messages = [
+      "Țin atât de mult la tine încât fiecare zi fără tine pare mai lungă ca o viață.",
+      "Îmi place tot la tine – zâmbetul, vocea, felul în care mă privești.",
+      "Ești tot ce îmi lipsea ca să fiu întreg.",
+      "Vreau să fiu doar al tău, și tu doar a mea, mereu.",
+      "Dragostea mea pentru tine crește cu fiecare bătaie a inimii."
+    ];
+    let index = 0;
+    function nextMessage() {
+      index = (index + 1) % messages.length;
+      document.getElementById("message").innerText = messages[index];
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = ["❤️", "💖", "💕", "💘", "💗"][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
